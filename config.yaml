@@ -1,0 +1,30 @@
+data:
+  nexus_path: "data/processed/nexus.parquet"
+
+query:
+  index_columns:
+    - iso3
+    - country
+    - year
+    - indicator_label
+    - value
+
+  country_classification_columns:
+    - region_name
+    - sub_region_name
+    - intermediate_region_name
+    - least_developed_countries_ldc
+    - land_locked_developing_countries_lldc
+    - small_island_developing_states_sids
+    - income_level
+    - oecd_member
+    - fragile_and_conflict_affected_situations
+
+  source_metadata_columns:
+    - source
+    - database
+    - collection
+
+  indicator_metadata_columns:
+    - indicator_code
+    - value_meta

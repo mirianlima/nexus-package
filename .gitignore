@@ -1,0 +1,24 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Quarto
+/.quarto/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Directories
+/data/
+
+# Marimo
+__marimo__/
