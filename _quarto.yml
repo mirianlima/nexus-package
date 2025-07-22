@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: _site
 
 website:
   title: "Nexus Marimo"
@@ -11,7 +12,6 @@ website:
 format:
   html:
     theme: cosmo
-    css: styles.css
     toc: true
 
 execute:
