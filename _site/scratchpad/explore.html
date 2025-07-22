@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Utils – Nexus Marimo</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Nexus Marimo</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-individual-sources" id="toc-load-individual-sources" class="nav-link active" data-scroll-target="#load-individual-sources">Load Individual Sources</a></li>
+  <li><a href="#load-nexus" id="toc-load-nexus" class="nav-link" data-scroll-target="#load-nexus">Load NEXUS</a></li>
+  <li><a href="#working-with-sources" id="toc-working-with-sources" class="nav-link" data-scroll-target="#working-with-sources">Working with sources</a></li>
+  <li><a href="#working-with-nexus-obt" id="toc-working-with-nexus-obt" class="nav-link" data-scroll-target="#working-with-nexus-obt">Working with Nexus OBT</a></li>
+  <li><a href="#start-exploring-the-sources-and-nexus" id="toc-start-exploring-the-sources-and-nexus" class="nav-link" data-scroll-target="#start-exploring-the-sources-and-nexus">Start exploring the sources and nexus</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Utils</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-1" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import required libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ibis <span class="im">import</span> _, selectors <span class="im">as</span> s</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Import project modules</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> process <span class="im">import</span> (</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    process_isora,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    process_wb,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    process_gfi,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    process_usaid,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    process_fsi,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    process_unodc,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    clean_nexus_data</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> config <span class="im">import</span> ISORA_FILES, WDI_INDICATOR_CODES, WGI_INDICATOR_LABELS, GFI_CONFIG</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure Altair for rendering larger datasets</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>alt.data_transformers.enable(<span class="st">'default'</span>, max_rows<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>DataTransformerRegistry.enable('default')</code></pre>
+</div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup project paths</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path.cwd()  <span class="co"># Assuming notebook is in a notebooks/ subdirectory</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>DATA_DIR <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"data"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>RAW_DATA_PATH <span class="op">=</span> DATA_DIR <span class="op">/</span> <span class="st">"raw"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>PROCESSED_DATA_PATH <span class="op">=</span> DATA_DIR <span class="op">/</span> <span class="st">"processed"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add project root to Python path for imports</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="bu">str</span>(PROJECT_ROOT))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Functions</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dt_map(df, code<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    base_cols <span class="op">=</span> [<span class="st">'source'</span>, <span class="st">'database'</span>, <span class="st">'collection'</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    cols <span class="op">=</span> base_cols <span class="op">+</span> [<span class="st">'indicator_code'</span>] <span class="cf">if</span> code <span class="cf">else</span> base_cols</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        df</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">filter</span>(cols)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        .value_counts()</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        .reset_index(name<span class="op">=</span><span class="st">'count'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        .sort_values(by<span class="op">=</span>cols<span class="op">+</span>[<span class="st">'count'</span>])</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> src_tbl(df, ind<span class="op">=</span><span class="st">'code'</span>):</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    ind_col <span class="op">=</span> <span class="st">"indicator_label"</span> <span class="cf">if</span> ind <span class="op">==</span> <span class="st">"label"</span> <span class="cf">else</span> <span class="st">"indicator_code"</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        df</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">filter</span>([<span class="st">'country'</span>,<span class="st">'year'</span>,ind_col,<span class="st">'value'</span>])</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        .pivot_table(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            index<span class="op">=</span>[<span class="st">'country'</span>, <span class="st">'year'</span>],</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            columns<span class="op">=</span>ind_col,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>            values<span class="op">=</span><span class="st">'value'</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="load-individual-sources" class="level2">
+<h2 class="anchored" data-anchor-id="load-individual-sources">Load Individual Sources</h2>
+<div id="cell-5" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process each data source</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pefa, taxwb, wb_nexus <span class="op">=</span> process_wb(RAW_DATA_PATH)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>isora, gfi, usaid, fsi, unodc <span class="op">=</span> (</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">globals</span>()[<span class="ss">f"process_</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>](RAW_DATA_PATH) <span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"isora"</span>, <span class="st">"gfi"</span>, <span class="st">"usaid"</span>, <span class="st">"fsi"</span>, <span class="st">"unodc"</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-nexus" class="level2">
+<h2 class="anchored" data-anchor-id="load-nexus">Load NEXUS</h2>
+<div id="cell-7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nexus<span class="op">=</span>pd.read_parquet(PROCESSED_DATA_PATH <span class="op">/</span> <span class="st">"nexus.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="working-with-sources" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-sources">Working with sources</h2>
+<div id="cell-9" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>src_tbl(pefa).describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">indicator_code</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-01</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-02</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-02i</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-02ii</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-03</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-04</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-04i</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-04ii</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-05</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2011-06</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-30</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-30.1</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-30.2</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-30.3</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-30.4</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-31</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-31.1</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-31.2</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-31.3</th>
+<th data-quarto-table-cell-role="th">WB.PEFA.PI-2016-31.4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>186.000000</td>
+<td>185.000000</td>
+<td>185.000000</td>
+<td>78.000000</td>
+<td>186.000000</td>
+<td>184.000000</td>
+<td>175.000000</td>
+<td>173.000000</td>
+<td>186.000000</td>
+<td>185.000000</td>
+<td>...</td>
+<td>65.000000</td>
+<td>63.000000</td>
+<td>63.000000</td>
+<td>62.000000</td>
+<td>65.000000</td>
+<td>59.000000</td>
+<td>59.000000</td>
+<td>58.000000</td>
+<td>59.000000</td>
+<td>59.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>2.741935</td>
+<td>2.340541</td>
+<td>2.178378</td>
+<td>3.730769</td>
+<td>3.053763</td>
+<td>2.296196</td>
+<td>2.520000</td>
+<td>2.312139</td>
+<td>2.854839</td>
+<td>3.070270</td>
+<td>...</td>
+<td>2.023077</td>
+<td>2.285714</td>
+<td>2.523810</td>
+<td>2.258065</td>
+<td>2.338462</td>
+<td>2.076271</td>
+<td>2.101695</td>
+<td>1.965517</td>
+<td>2.050847</td>
+<td>2.135593</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>1.054240</td>
+<td>1.038775</td>
+<td>1.071147</td>
+<td>0.767405</td>
+<td>1.113704</td>
+<td>1.129842</td>
+<td>1.312364</td>
+<td>1.159251</td>
+<td>0.933116</td>
+<td>0.897116</td>
+<td>...</td>
+<td>0.772732</td>
+<td>1.069045</td>
+<td>1.175793</td>
+<td>0.974015</td>
+<td>1.189497</td>
+<td>0.959587</td>
+<td>1.227486</td>
+<td>1.075493</td>
+<td>1.057383</td>
+<td>1.238153</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>...</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>2.000000</td>
+<td>1.500000</td>
+<td>1.000000</td>
+<td>4.000000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>...</td>
+<td>1.500000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>3.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>4.000000</td>
+<td>3.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>...</td>
+<td>1.500000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>4.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>3.500000</td>
+<td>4.000000</td>
+<td>3.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>...</td>
+<td>2.500000</td>
+<td>3.000000</td>
+<td>3.500000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>...</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+</tr>
+</tbody>
+</table>
+
+<p>8 rows × 218 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>src_tbl(pefa,<span class="st">"label"</span>).describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">indicator_label</th>
+<th data-quarto-table-cell-role="th">PEFA: Accounting standards</th>
+<th data-quarto-table-cell-role="th">PEFA: Accounting standards used</th>
+<th data-quarto-table-cell-role="th">PEFA: Accuracy of in-year budget reports</th>
+<th data-quarto-table-cell-role="th">PEFA: Adequacy of time for the legislature to provide a response to budget proposals .</th>
+<th data-quarto-table-cell-role="th">PEFA: Advance accounts</th>
+<th data-quarto-table-cell-role="th">PEFA: Aggregate expenditure out-turn</th>
+<th data-quarto-table-cell-role="th">PEFA: Aggregate expenditure out-turn compared to original approved budget</th>
+<th data-quarto-table-cell-role="th">PEFA: Aggregate revenue out-turn compared to original approved budget</th>
+<th data-quarto-table-cell-role="th">PEFA: Agregate revenue outturn</th>
+<th data-quarto-table-cell-role="th">PEFA: Alignment of strategic plans and medium-term budgets</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">PEFA: Timing of budget approval</th>
+<th data-quarto-table-cell-role="th">PEFA: Timing of in-year budget reports</th>
+<th data-quarto-table-cell-role="th">PEFA: Transfer of revenue collections</th>
+<th data-quarto-table-cell-role="th">PEFA: Transparency of asset disposal</th>
+<th data-quarto-table-cell-role="th">PEFA: Transparency of inter-governmental fiscal relations</th>
+<th data-quarto-table-cell-role="th">PEFA: Transparency of legislative scrutiny of audit reports</th>
+<th data-quarto-table-cell-role="th">PEFA: Transparency of taxpayer obligations and liabilities</th>
+<th data-quarto-table-cell-role="th">PEFA: Transparency, comprehensiveness and competition in the legal and regulatory framework.</th>
+<th data-quarto-table-cell-role="th">PEFA: Transparent and rules based systems in the horizontal allocation</th>
+<th data-quarto-table-cell-role="th">PEFA: Use of competitive procurement methods.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>65.000000</td>
+<td>176.000000</td>
+<td>63.000000</td>
+<td>173.000000</td>
+<td>64.000000</td>
+<td>65.000000</td>
+<td>186.000000</td>
+<td>186.000000</td>
+<td>65.000000</td>
+<td>65.000000</td>
+<td>...</td>
+<td>65.000000</td>
+<td>63.000000</td>
+<td>65.000000</td>
+<td>65.000000</td>
+<td>161.000000</td>
+<td>59.000000</td>
+<td>180.000000</td>
+<td>176.000000</td>
+<td>155.000000</td>
+<td>176.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>2.030769</td>
+<td>2.278409</td>
+<td>2.349206</td>
+<td>2.930636</td>
+<td>2.203125</td>
+<td>2.723077</td>
+<td>2.741935</td>
+<td>3.053763</td>
+<td>2.484615</td>
+<td>1.907692</td>
+<td>...</td>
+<td>3.415385</td>
+<td>2.079365</td>
+<td>3.615385</td>
+<td>1.953846</td>
+<td>2.739130</td>
+<td>2.135593</td>
+<td>2.936111</td>
+<td>2.454545</td>
+<td>3.161290</td>
+<td>2.136364</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>0.809499</td>
+<td>0.977922</td>
+<td>0.935996</td>
+<td>1.159309</td>
+<td>1.210794</td>
+<td>1.192525</td>
+<td>1.054240</td>
+<td>1.113704</td>
+<td>1.198858</td>
+<td>0.979845</td>
+<td>...</td>
+<td>0.966506</td>
+<td>1.067127</td>
+<td>0.654129</td>
+<td>0.891466</td>
+<td>0.937228</td>
+<td>1.238153</td>
+<td>0.728568</td>
+<td>1.051900</td>
+<td>1.136661</td>
+<td>1.092121</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>...</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>...</td>
+<td>3.000000</td>
+<td>1.000000</td>
+<td>3.000000</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+<td>2.500000</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>2.000000</td>
+<td>...</td>
+<td>4.000000</td>
+<td>2.000000</td>
+<td>4.000000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>4.000000</td>
+<td>2.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>4.000000</td>
+<td>3.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>2.000000</td>
+<td>...</td>
+<td>4.000000</td>
+<td>3.000000</td>
+<td>4.000000</td>
+<td>2.000000</td>
+<td>3.500000</td>
+<td>3.000000</td>
+<td>3.500000</td>
+<td>3.000000</td>
+<td>4.000000</td>
+<td>3.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>...</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+<td>4.000000</td>
+</tr>
+</tbody>
+</table>
+
+<p>8 rows × 218 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>src_tbl(pefa,<span class="st">"label"</span>).info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+MultiIndex: 250 entries, ('AFG', '2005') to ('ZWE', '2018')
+Columns: 218 entries, PEFA: Accounting standards to PEFA: Use of competitive procurement methods.
+dtypes: float64(218)
+memory usage: 431.4+ KB</code></pre>
+</div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dt_map(pefa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">source</th>
+<th data-quarto-table-cell-role="th">database</th>
+<th data-quarto-table-cell-role="th">collection</th>
+<th data-quarto-table-cell-role="th">indicator_code</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2011-01</td>
+<td>1683</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2011-02</td>
+<td>1683</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">44</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2011-02i</td>
+<td>1683</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">91</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2011-02ii</td>
+<td>1241</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">52</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2011-03</td>
+<td>1683</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">211</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2016-31</td>
+<td>935</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">212</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2016-31.1</td>
+<td>935</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">213</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2016-31.2</td>
+<td>935</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">214</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2016-31.3</td>
+<td>935</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">215</td>
+<td>World Bank</td>
+<td>WB-PEFA.xlsx</td>
+<td>PEFA</td>
+<td>WB.PEFA.PI-2016-31.4</td>
+<td>935</td>
+</tr>
+</tbody>
+</table>
+
+<p>218 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dt_map(isora, <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">source</th>
+<th data-quarto-table-cell-role="th">database</th>
+<th data-quarto-table-cell-role="th">collection</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">17</td>
+<td>ISORA</td>
+<td>IMF ISORA.xlsx</td>
+<td>Electronic filing rates by tax</td>
+<td>1485</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>ISORA</td>
+<td>IMF ISORA.xlsx</td>
+<td>On-time filing rates by tax typ</td>
+<td>1980</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>ISORA</td>
+<td>IMF ISORA.xlsx</td>
+<td>Percentage inactive taxpayers o</td>
+<td>2475</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>ISORA</td>
+<td>IMF ISORA.xlsx</td>
+<td>Proportion of returns by ch_0</td>
+<td>2475</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>ISORA</td>
+<td>IMF ISORA.xlsx</td>
+<td>Proportion of returns by ch_1</td>
+<td>2475</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>ISORA</td>
+<td>IMF ISORA.xlsx</td>
+<td>Proportion of returns by channe</td>
+<td>2475</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>ISORA</td>
+<td>IMF ISORA.xlsx</td>
+<td>Registration of personal income</td>
+<td>990</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>ISORA</td>
+<td>IMF ISORA.xlsx</td>
+<td>Segmentation ratios LTO or prog</td>
+<td>2970</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">19</td>
+<td>ISORA</td>
+<td>imf isora op metrics audit, criminal investiga...</td>
+<td>Audit and verification</td>
+<td>990</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">14</td>
+<td>ISORA</td>
+<td>imf isora op metrics audit, criminal investiga...</td>
+<td>Dispute resolution review proce</td>
+<td>1980</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>ISORA</td>
+<td>imf isora op metrics audit, criminal investiga...</td>
+<td>Tax crime investigation</td>
+<td>1980</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12</td>
+<td>ISORA</td>
+<td>imf isora op metrics audit, criminal investiga...</td>
+<td>Value of additional assessm_0</td>
+<td>1980</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">15</td>
+<td>ISORA</td>
+<td>imf isora op metrics audit, criminal investiga...</td>
+<td>Value of additional assessments</td>
+<td>1485</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">16</td>
+<td>ISORA</td>
+<td>imf isora resources and ICT infrastructure.xlsx</td>
+<td>Operational ICT solutions</td>
+<td>1485</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9</td>
+<td>ISORA</td>
+<td>imf isora resources and ICT infrastructure.xlsx</td>
+<td>Tax administration expenditures</td>
+<td>1980</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>ISORA</td>
+<td>imf isora resources and ICT infrastructure.xlsx</td>
+<td>Tax administration staff total</td>
+<td>2970</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>ISORA</td>
+<td>imf isora staff metrics.xlsx</td>
+<td>Staff academic qualifications</td>
+<td>990</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>ISORA</td>
+<td>imf isora staff metrics.xlsx</td>
+<td>Staff age distribution</td>
+<td>2970</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>ISORA</td>
+<td>imf isora staff metrics.xlsx</td>
+<td>Staff gender distribution</td>
+<td>2952</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">10</td>
+<td>ISORA</td>
+<td>imf isora staff metrics.xlsx</td>
+<td>Staff length of service</td>
+<td>1980</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11</td>
+<td>ISORA</td>
+<td>imf isora staff metrics.xlsx</td>
+<td>Staff strength levels</td>
+<td>1980</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="working-with-nexus-obt" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-nexus-obt">Working with Nexus OBT</h2>
+<div id="cell-15" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nexus.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 616409 entries, 0 to 616408
+Data columns (total 34 columns):
+ #   Column                                    Non-Null Count   Dtype  
+---  ------                                    --------------   -----  
+ 0   year                                      616409 non-null  Int64  
+ 1   value                                     582793 non-null  float64
+ 2   source                                    616409 non-null  object 
+ 3   indicator_code                            616409 non-null  object 
+ 4   indicator_label                           616409 non-null  object 
+ 5   database                                  616409 non-null  object 
+ 6   collection                                616409 non-null  object 
+ 7   value_meta                                33928 non-null   object 
+ 8   global_code                               603777 non-null  float64
+ 9   global_name                               603777 non-null  object 
+ 10  region_code                               603777 non-null  float64
+ 11  region_name                               603777 non-null  object 
+ 12  sub_region_code                           603777 non-null  float64
+ 13  sub_region_name                           603777 non-null  object 
+ 14  intermediate_region_code                  256549 non-null  float64
+ 15  intermediate_region_name                  273893 non-null  object 
+ 16  country_or_area                           603777 non-null  object 
+ 17  m49                                       603777 non-null  float64
+ 18  iso2                                      600615 non-null  object 
+ 19  iso3                                      603777 non-null  object 
+ 20  least_developed_countries_ldc             126272 non-null  object 
+ 21  land_locked_developing_countries_lldc     98110 non-null   object 
+ 22  small_island_developing_states_sids       101839 non-null  object 
+ 23  arab_states                               48563 non-null   object 
+ 24  fragile_and_conflict_affected_situations  94083 non-null   object 
+ 25  hipc                                      119838 non-null  object 
+ 26  high_income                               193793 non-null  object 
+ 27  low_income                                73566 non-null   object 
+ 28  lower_middle_income                       169523 non-null  object 
+ 29  oecd_member                               145856 non-null  object 
+ 30  small_state                               128530 non-null  object 
+ 31  ldc_transit_countries                     108092 non-null  object 
+ 32  upper_middle_income                       159251 non-null  object 
+ 33  oil_exporting_countries                   213860 non-null  object 
+dtypes: Int64(1), float64(6), object(27)
+memory usage: 160.5+ MB</code></pre>
+</div>
+</div>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dt_map(nexus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>src_tbl(nexus.query(<span class="st">'source=="ISORA"'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">indicator_code</th>
+<th data-quarto-table-cell-role="th">Academic qualifications (No. of staff at the end of FY)-Bachelors degree</th>
+<th data-quarto-table-cell-role="th">Academic qualifications (No. of staff at the end of FY)-Masters degree (or above)</th>
+<th data-quarto-table-cell-role="th">Active taxpayers on PIT register as percentage of Labor Force</th>
+<th data-quarto-table-cell-role="th">Active taxpayers on PIT register as percentage of Population</th>
+<th data-quarto-table-cell-role="th">Age distribution (No. of staff at the end of FY)-25-34 years</th>
+<th data-quarto-table-cell-role="th">Age distribution (No. of staff at the end of FY)-35-44 years</th>
+<th data-quarto-table-cell-role="th">Age distribution (No. of staff at the end of FY)-45-54 years</th>
+<th data-quarto-table-cell-role="th">Age distribution (No. of staff at the end of FY)-55-64 years</th>
+<th data-quarto-table-cell-role="th">Age distribution (No. of staff at the end of FY)-Over 64 years</th>
+<th data-quarto-table-cell-role="th">Age distribution (No. of staff at the end of FY)-Under 25 years</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Staff strength levels -Recruitments in FY</th>
+<th data-quarto-table-cell-role="th">Total tax administration FTEs - Derived</th>
+<th data-quarto-table-cell-role="th">Total value of additional assessments raised through LTO/P as percentage of total value of additional assessments raised from audits</th>
+<th data-quarto-table-cell-role="th">Value of additional assessments raised from audits and verification actions (including penalties and interest) (in thousands in local currency)-All audits (excluded electronic compliance checks)</th>
+<th data-quarto-table-cell-role="th">Value of additional assessments raised from audits and verification actions (including penalties and interest) (in thousands in local currency)-Electronic compliance checks</th>
+<th data-quarto-table-cell-role="th">Value of additional assessments raised from audits and verification actions (including penalties and interest) (in thousands in local currency)-Total</th>
+<th data-quarto-table-cell-role="th">Value of additional assessments raised from audits and verification actions by tax type (including penalties and interest) (in thousands in local currency)-Corporate income tax</th>
+<th data-quarto-table-cell-role="th">Value of additional assessments raised from audits and verification actions by tax type (including penalties and interest) (in thousands in local currency)-Personal income tax</th>
+<th data-quarto-table-cell-role="th">Value of additional assessments raised from audits and verification actions by tax type (including penalties and interest) (in thousands in local currency)-Tax withheld by employers from employees</th>
+<th data-quarto-table-cell-role="th">Value of additional assessments raised from audits and verification actions by tax type (including penalties and interest) (in thousands in local currency)-Value added tax</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ABW</td>
+<td data-quarto-table-cell-role="th">2020</td>
+<td>26.0</td>
+<td>18.0</td>
+<td>101.553445</td>
+<td>54.984733</td>
+<td>29.0</td>
+<td>72.0</td>
+<td>71.0</td>
+<td>77.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>...</td>
+<td>3.0</td>
+<td>329.0</td>
+<td>NaN</td>
+<td>5133.0</td>
+<td>75.0</td>
+<td>5208.0</td>
+<td>1694.0</td>
+<td>23.0</td>
+<td>2736.0</td>
+<td>605.0</td>
+</tr>
+<tr class="even">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">AFG</td>
+<td data-quarto-table-cell-role="th">2018</td>
+<td>2145.0</td>
+<td>120.0</td>
+<td>0.615603</td>
+<td>0.170895</td>
+<td>679.0</td>
+<td>566.0</td>
+<td>453.0</td>
+<td>226.0</td>
+<td>20.0</td>
+<td>321.0</td>
+<td>...</td>
+<td>115.0</td>
+<td>2800.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2019</td>
+<td>2145.0</td>
+<td>120.0</td>
+<td>0.709346</td>
+<td>0.199547</td>
+<td>679.0</td>
+<td>566.0</td>
+<td>453.0</td>
+<td>226.0</td>
+<td>20.0</td>
+<td>321.0</td>
+<td>...</td>
+<td>115.0</td>
+<td>2265.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">AGO</td>
+<td data-quarto-table-cell-role="th">2018</td>
+<td>1848.0</td>
+<td>76.0</td>
+<td>37.297847</td>
+<td>15.381275</td>
+<td>1243.0</td>
+<td>1577.0</td>
+<td>634.0</td>
+<td>287.0</td>
+<td>0.0</td>
+<td>48.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>2014.0</td>
+<td>NaN</td>
+<td>3632255.0</td>
+<td>0.0</td>
+<td>3632255.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2019</td>
+<td>1923.0</td>
+<td>83.0</td>
+<td>39.828213</td>
+<td>16.463352</td>
+<td>992.0</td>
+<td>1823.0</td>
+<td>657.0</td>
+<td>317.0</td>
+<td>0.0</td>
+<td>27.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>2131.0</td>
+<td>31.955338</td>
+<td>30989905.0</td>
+<td>0.0</td>
+<td>30989905.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">ZMB</td>
+<td data-quarto-table-cell-role="th">2019</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>765.0</td>
+<td>696.0</td>
+<td>429.0</td>
+<td>6.0</td>
+<td>0.0</td>
+<td>64.0</td>
+<td>...</td>
+<td>273.0</td>
+<td>949.0</td>
+<td>40.238214</td>
+<td>3300400.0</td>
+<td>0.0</td>
+<td>3300400.0</td>
+<td>653900.0</td>
+<td>0.0</td>
+<td>272500.0</td>
+<td>948500.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2020</td>
+<td>1443.0</td>
+<td>136.0</td>
+<td>0.176075</td>
+<td>0.073140</td>
+<td>692.0</td>
+<td>770.0</td>
+<td>505.0</td>
+<td>48.0</td>
+<td>0.0</td>
+<td>51.0</td>
+<td>...</td>
+<td>195.0</td>
+<td>1033.0</td>
+<td>59.849657</td>
+<td>3789061.0</td>
+<td>0.0</td>
+<td>3789061.0</td>
+<td>1724134.0</td>
+<td>0.0</td>
+<td>135922.0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">ZWE</td>
+<td data-quarto-table-cell-role="th">2018</td>
+<td>1658.0</td>
+<td>514.0</td>
+<td>0.350737</td>
+<td>0.167819</td>
+<td>1219.0</td>
+<td>697.0</td>
+<td>633.0</td>
+<td>170.0</td>
+<td>0.0</td>
+<td>8.0</td>
+<td>...</td>
+<td>36.0</td>
+<td>1084.0</td>
+<td>46.300273</td>
+<td>274750.0</td>
+<td>0.0</td>
+<td>274750.0</td>
+<td>82425.0</td>
+<td>27475.0</td>
+<td>54950.0</td>
+<td>109900.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2019</td>
+<td>1578.0</td>
+<td>496.0</td>
+<td>0.645954</td>
+<td>0.310376</td>
+<td>979.0</td>
+<td>781.0</td>
+<td>642.0</td>
+<td>202.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>1090.0</td>
+<td>64.573514</td>
+<td>290455.0</td>
+<td>0.0</td>
+<td>290455.0</td>
+<td>30869.0</td>
+<td>10289.0</td>
+<td>10289.0</td>
+<td>51449.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2020</td>
+<td>1997.0</td>
+<td>411.0</td>
+<td>0.000200</td>
+<td>0.000094</td>
+<td>1040.0</td>
+<td>798.0</td>
+<td>630.0</td>
+<td>197.0</td>
+<td>13.0</td>
+<td>4.0</td>
+<td>...</td>
+<td>276.0</td>
+<td>2596.0</td>
+<td>NaN</td>
+<td>380987.0</td>
+<td>0.0</td>
+<td>380987.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>462 rows × 80 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="start-exploring-the-sources-and-nexus" class="level2">
+<h2 class="anchored" data-anchor-id="start-exploring-the-sources-and-nexus">Start exploring the sources and nexus</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

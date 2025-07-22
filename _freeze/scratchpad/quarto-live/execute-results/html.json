@@ -1,0 +1,12 @@
+{
+  "hash": "6355fab9ca8dc31dee2b4f5d5397cb01",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Quarto Basics\"\nformat: live-html\n---\n\n```{pyodide}\nfor x in range(5):\n  print(x ** 2)\n```\n\n",
+    "supporting": [
+      "quarto-live_files/figure-html"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
